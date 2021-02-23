@@ -1,8 +1,6 @@
 // This file is exported to --->  src/index.js
 // React required
-import React, { useState, useEffect } from "react";
-// Amplify required
-import { Auth } from "aws-amplify"; 
+import React, { useState, useEffect } from "react"; 
 // Routes (Links) for all pages -- See -- src/Routes.js
 import Routes from "./Routes"; 
 // Components
@@ -20,22 +18,13 @@ export default function App() {
     const [isAuthenticated, userHasAuthenticated] = useState(false);
     // Waiting for the application to finish signing in the user
     const [isAuthenticating, setIsAuthenticating] = useState(true);
-    const [user, setUser] = useState(null);
 
     // useEffect for the current session and setting our isAuthenticated to true if signed in
     useEffect(() => {
 
         async function onLoad() {
 
-            try {
-
-                // Getting current user session
-                await Auth.currentSession();
-                // Getting user information
-                let user = await Auth.currentAuthenticatedUser({ bypassCache: true });
-                let { attributes } = user;
-
-                setUser(attributes);
+            try { 
                 userHasAuthenticated(true);
             }
             catch (e) {
@@ -53,10 +42,10 @@ export default function App() {
     }, []);      
 
     // Important user variables
-    const userId = user && user["sub"];
-    const userEmail = user && user["email"];
-    const userFirstName = user && user["given_name"];
-    const userLastName = user && user["family_name"]; 
+    const userId = "000000";
+    const userEmail = "gradi@fiberabbit.com";
+    const userFirstName = "Gradi";
+    const userLastName = "Musa";
 
     // Return UI
     return (
